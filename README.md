@@ -17,6 +17,7 @@
 - __Evaluation__
   - [Personal Evaluation](doc/eval.md)
   - [Coding Standards & Principles](doc/princ.md)
+  - [Legal, Social & Ethical Considerations](doc/LSE.md)
 - [References](doc/ref.md)
 
 ## Introduction
@@ -32,3 +33,4 @@ Normally I'd design projects with the intent of being deployed locally but seein
 
 ## Credit to resources used to achieve outcome (videos/websites/documentation)
 ChatGPT (initial prompting/inspiration for system architecture)
+dbdiagram.io (ERD Visual Design)
