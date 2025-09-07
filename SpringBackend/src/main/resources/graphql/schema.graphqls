@@ -1,24 +1,459 @@
+scalar Date
+schema {
+  query: Query
+  mutation: Mutation
+}
+
 type Query {
-    events: [Event]
-    eventById(eventID: Int): Event
-    courses: [Course]
-    courseByName(courseName: String): Course
+  accounts: [Account]
+  accountById(accountID: String!): Account
+
+  attendanceRecords: [AttendanceRecord]
+  attendanceRecordById(attendanceID: String!): AttendanceRecord
+
+  books: [Book]
+  bookById(bookID: String!): Book
+
+  bookAssignments: [BookAssigment]
+  bookAssigmentById(uniqueAssignID: String!): BookAssigment
+
+  complaintRecords: [ComplaintRecord]
+  complaintRecordById(complaintID: String!): ComplaintRecord
+
+  courses: [Course]
+  courseByName(courseName: String!): Course
+
+  courseEnrollments: [CourseEnrollment]
+  courseEnrollmentById(enrolID: String!): CourseEnrollment
+
+  exams: [Exam]
+  examById(examID: String!): Exam
+
+  examRecords: [ExamRecord]
+  examRecordByPk(studentID: String!, examID: String!): ExamRecord
+
+  payments: [Payment]
+  paymentById(paymentID: String!): Payment
+
+  persons: [Person]
+  personById(personID: String!): Person
+
+  publicEvents: [PublicEvent]
+  publicEventById(eventID: String!): PublicEvent
+
+  students: [Student]
+  studentById(studentID: String!): Student
+
+  studentFeedbacks: [StudentFeedback]
+  studentFeedbackById(feedbackID: String!): StudentFeedback
+
+  subjects: [Subject]
+  subjectByName(subjectName: String!): Subject
+  subjectByTeacher(teacherID: Int) : Subject
 }
 
-type Event {
-    eventID: Int
-    dateInfo: String
-    timeInfo: String
-    openTo: String
-    eventDesc: String
-    relevantLinks: String
+
+type Mutation {
+  createAccount(input: CreateAccountInput!): Account
+  updateAccount(username: String, input: UpdateAccountInput!): Account
+  deleteAccount(username: String): Boolean
+
+  createAttendanceRecord(input: CreateAttendanceRecordInput!): AttendanceRecord
+  updateAttendanceRecord(attendanceID: String, input: UpdateAttendanceRecordInput!): AttendanceRecord
+  deleteAttendanceRecord(attendanceID: String): Boolean
+
+  createBook(input: CreateBookInput!): Book
+  updateBook(bookID: String, input: UpdateBookInput!): Book
+  deleteBook(bookID: String): Boolean
+
+  createBookAssignment(input: CreateBookAssigmentInput!): BookAssigment
+  updateBookAssignment(uniqueAssignID: String, input: UpdateBookAssigmentInput!): BookAssigment
+  deleteBookAssignment(uniqueAssignID: String): Boolean
+
+  createComplaintRecord(input: CreateComplaintRecordInput!): ComplaintRecord
+  updateComplaintRecord(complaintID: String, input: UpdateComplaintRecordInput!): ComplaintRecord
+  deleteComplaintRecord(complaintID: String): Boolean
+
+  createCourse(input: CreateCourseInput!): Course
+  updateCourse(courseName: String, input: UpdateCourseInput!): Course
+  deleteCourse(courseName: String): Boolean
+
+  createCourseEnrollment(input: CreateCourseEnrollmentInput!): CourseEnrollment
+  updateCourseEnrollment(enrolID: String, input: UpdateCourseEnrollmentInput!): CourseEnrollment
+  deleteCourseEnrollment(enrolID: String): Boolean
+
+  createExam(input: CreateExamInput!): Exam
+  updateExam(examID: String, input: UpdateExamInput!): Exam
+  deleteExam(examID: String): Boolean
+
+  createExamRecord(input: CreateExamRecordInput!): ExamRecord
+  updateExamRecord(studentID: String, input: UpdateExamRecordInput!): ExamRecord
+  deleteExamRecord(studentID: String): Boolean
+
+  createPayment(input: CreatePaymentInput!): Payment
+  updatePayment(paymentID: String, input: UpdatePaymentInput!): Payment
+  deletePayment(paymentID: String): Boolean
+
+  createPerson(input: CreatePersonInput!): Person
+  updatePerson(personID: String, input: UpdatePersonInput!): Person
+  deletePerson(personID: String): Boolean
+
+  createPublicEvent(input: CreatePublicEventInput!): PublicEvent
+  updatePublicEvent(eventID: String, input: UpdatePublicEventInput!): PublicEvent
+  deletePublicEvent(eventID: String): Boolean
+
+  createStudent(input: CreateStudentInput!): Student
+  updateStudent(studentID: String, input: UpdateStudentInput!): Student
+  deleteStudent(studentID: String): Boolean
+
+  createStudentFeedback(input: CreateStudentFeedbackInput!): StudentFeedback
+  updateStudentFeedback(feedbackID: String, input: UpdateStudentFeedbackInput!): StudentFeedback
+  deleteStudentFeedback(feedbackID: String): Boolean
+
+  createSubject(input: CreateSubjectInput!): Subject
+  updateSubject(subjectName: String, input: UpdateSubjectInput!): Subject
+  deleteSubject(subjectName: String): Boolean
 }
 
+type Account {
+  username: String
+  password: String
+  accountID: Int
+}
+type AttendanceRecord {
+  attendanceID: Int
+  studentID: Int
+  subjectID: Int
+  dateMarked: Date
+  isAbsent: Boolean
+  authorisedAbsence: Boolean
+  extraInfo: String
+}
+type Book {
+  bookID: Int
+  bookName: String
+  bookDesc: String
+  price: Float
+  bookLinks: String
+}
+type BookAssigment {
+  uniqueAssignID: Int
+  bookID: Int
+  subjectName: String
+}
+type ComplaintRecord {
+  complaintID: Int
+  studentID: Int
+  teacherID: Int
+  complaintTitle: String
+  complaintDesc: String
+  meetingSet: Date
+  outcome: String
+}
 type Course {
-    courseName: String
-    courseDesc: String
-    price: Float
-    duration: String
-    capacity: Int
-    targetAge: String
+  courseName: String
+  courseDesc: String
+  price: Float
+  duration: String
+  capacity: Int
+  targetAge: String
+}
+type CourseEnrollment {
+  enrolID: Int
+  studentID: Int
+  courseName: String
+  startDate:Date
+  endDate: Date
+  finalOutcome: String
+  currentlyTaking: Boolean
+}
+type Exam {
+  examID: Int
+  examTitle: String
+  examDesc: String
+  forSubject: String
+}
+type ExamRecord {
+  studentID: Int
+  examID: Int
+  takenAt: Date
+}
+type Payment {
+  paymentID: Int
+  paymentType: String
+  paymentReceived: Boolean
+  madeOnline: Boolean
+  amount: Float
+  dateMade: Date
+  paymentFor: String
+}
+type Person {
+  personID: Int
+  firstName: String
+  lastName: String
+  doB: Date
+  gender: String
+  homeAddress: String
+  email: String
+  phoneNo: String
+  applicationInfo: String
+  typeOfPerson: String
+  medicalInfo: String
+  userFlag: Boolean
+  relationshipWith: String
+}
+type PublicEvent {
+  eventID: Int
+  dateInfo: String
+  timeInfo: String
+  openTo: String
+  eventDesc: String
+  relevantLinks: String
+}
+type Student {
+  studentID: Int
+  debtOwes: Float
+}
+type StudentFeedback {
+  feedbackID: Int
+  feedbackGiven: String
+  studentID: Int
+  teacherID: Int
+}
+type Subject {
+  subjectName: String
+  subjectDesc: String
+  timeInfo: String
+  dateInfo: String
+  teacherID: Int
+  salary: Float
+  hireDate: Date
+}
+input CreateAccountInput {
+  username: String!
+  password: String!
+  accountID: String!
+}
+input UpdateAccountInput {
+  username: String
+  password: String
+  accountID: String
+}
+input CreateAttendanceRecordInput {
+  attendanceID: String!
+  studentID: String!
+  subjectID: String!
+  dateMarked: String!
+  isAbsent: Boolean!
+  authorisedAbsence: Boolean!
+  extraInfo: String!
+}
+input UpdateAttendanceRecordInput {
+  attendanceID: String
+  studentID: String
+  subjectID: String
+  dateMarked: String
+  isAbsent: Boolean
+  authorisedAbsence: Boolean
+  extraInfo: String
+}
+input CreateBookInput {
+  bookID: String!
+  bookName: String!
+  bookDesc: String!
+  price: Float!
+  bookLinks: String!
+}
+input UpdateBookInput {
+  bookID: String
+  bookName: String
+  bookDesc: String
+  price: Float
+  bookLinks: String
+}
+input CreateBookAssigmentInput {
+  uniqueAssignID: String!
+  bookID: String!
+  subjectName: String!
+}
+input UpdateBookAssigmentInput {
+  uniqueAssignID: String
+  bookID: String
+  subjectName: String
+}
+input CreateComplaintRecordInput {
+  complaintID: String!
+  studentID: String!
+  teacherID: String!
+  complaintTitle: String!
+  complaintDesc: String!
+  meetingSet: String!
+  outcome: String!
+}
+input UpdateComplaintRecordInput {
+  complaintID: String
+  studentID: String
+  teacherID: String
+  complaintTitle: String
+  complaintDesc: String
+  meetingSet: String
+  outcome: String
+}
+input CreateCourseInput {
+  courseName: String!
+  courseDesc: String!
+  price: Float!
+  duration: String!
+  capacity: String!
+  targetAge: String!
+}
+input UpdateCourseInput {
+  courseName: String
+  courseDesc: String
+  price: Float
+  duration: String
+  capacity: String
+  targetAge: String
+}
+input CreateCourseEnrollmentInput {
+  enrolID: String!
+  studentID: String!
+  courseName: String!
+  startDate: String!
+  endDate: String!
+  finalOutcome: String!
+  currentlyTaking: Boolean!
+}
+input UpdateCourseEnrollmentInput {
+  enrolID: String
+  studentID: String
+  courseName: String
+  startDate: String
+  endDate: String
+  finalOutcome: String
+  currentlyTaking: Boolean
+}
+input CreateExamInput {
+  examID: String!
+  examTitle: String!
+  examDesc: String!
+  forSubject: String!
+}
+input UpdateExamInput {
+  examID: String
+  examTitle: String
+  examDesc: String
+  forSubject: String
+}
+input CreateExamRecordInput {
+  studentID: String!
+  examID: String!
+  takenAt: String!
+}
+input UpdateExamRecordInput {
+  studentID: String
+  examID: String
+  takenAt: String
+}
+input CreatePaymentInput {
+  paymentID: String!
+  paymentType: String!
+  paymentReceived: Boolean!
+  madeOnline: Boolean!
+  amount: Float!
+  dateMade: String!
+  paymentFor: String!
+}
+input UpdatePaymentInput {
+  paymentID: String
+  paymentType: String
+  paymentReceived: Boolean
+  madeOnline: Boolean
+  amount: Float
+  dateMade: String
+  paymentFor: String
+}
+input CreatePersonInput {
+  personID: String!
+  firstName: String!
+  lastName: String!
+  doB: String!
+  gender: String!
+  homeAddress: String!
+  email: String!
+  phoneNo: String!
+  applicationInfo: String!
+  typeOfPerson: String!
+  medicalInfo: String!
+  userFlag: Boolean!
+  relationshipWith: String!
+}
+input UpdatePersonInput {
+  personID: String
+  firstName: String
+  lastName: String
+  doB: String
+  gender: String
+  homeAddress: String
+  email: String
+  phoneNo: String
+  applicationInfo: String
+  typeOfPerson: String
+  medicalInfo: String
+  userFlag: Boolean
+  relationshipWith: String
+}
+input CreatePublicEventInput {
+  eventID: String!
+  dateInfo: String!
+  timeInfo: String!
+  openTo: String!
+  eventDesc: String!
+  relevantLinks: String!
+}
+input UpdatePublicEventInput {
+  eventID: String
+  dateInfo: String
+  timeInfo: String
+  openTo: String
+  eventDesc: String
+  relevantLinks: String
+}
+input CreateStudentInput {
+  studentID: String!
+  debtOwes: Float!
+}
+input UpdateStudentInput {
+  studentID: String
+  debtOwes: Float
+}
+input CreateStudentFeedbackInput {
+  feedbackID: String!
+  feedbackGiven: String!
+  studentID: String!
+  teacherID: String!
+}
+input UpdateStudentFeedbackInput {
+  feedbackID: String
+  feedbackGiven: String
+  studentID: String
+  teacherID: String
+}
+input CreateSubjectInput {
+  subjectName: String!
+  subjectDesc: String!
+  timeInfo: String!
+  dateInfo: String!
+  teacherID: String!
+  salary: Float!
+  hireDate: String!
+}
+input UpdateSubjectInput {
+  subjectName: String
+  subjectDesc: String
+  timeInfo: String
+  dateInfo: String
+  teacherID: String
+  salary: Float
+  hireDate: String
 }
