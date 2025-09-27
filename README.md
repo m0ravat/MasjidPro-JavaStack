@@ -4,19 +4,19 @@
 
 - __Overview__
   - [Introduction](#introduction)
-  - [Requirements](doc/req.md)
+  - [Requirements](doc/Analysis/req.md)
   - [Software Methodology](doc/method.md)
 - __Design__
-  - [Tech stack](doc/stack.md)
-  - [Database](doc/db.md)
-  - [API/Libraries used](doc/api.md)
+  - [Tech stack](doc/Design/stack.md)
+  - [Database](doc/Design/db.md)
+  - [API/Libraries used](doc/Design/api.md)
 - __Implementation__
   - [Version Control & Deployment](doc/vcD.md)
-  - [Code Structure](doc/code.md)
-  - [Testing](doc/test.md)
+  - [Code Structure](doc/Implementation/code.md)
+  - [Testing](doc/Testing/test.md)
 - __Evaluation__
   - [Personal Evaluation](doc/eval.md)
-  - [Coding Standards & Principles](doc/princ.md)
+  - [Coding Standards & Principles](doc/Planning/princ.md)
   - [Legal, Social & Ethical Considerations](doc/LSE.md)
 - [References](doc/ref.md)
 
@@ -29,8 +29,10 @@ The inspiration of this project is that I wanted to create a worthwhile project 
 
 ### How to run project
 
-Normally I'd design projects with the intent of being deployed locally but seeing the commercial nature alongside it extending upon every tech medium (browser, desktop & mobile) it would be extremely tedious. I will deploy the website online for visual use with a simulated user available alongside an installation for said desktop app, however at this stage I am unsure if I'll be able to put a relevant mobile version on the app store. I will provide screenshots/videos of how the system operates at later stages.  
+My intention here is to create an MVP (Minimum Viable Product), as such I will be deploying the final product locally. My aim will be to make each part modular and functional before integrating them together, these will be deployed.
 
-## Credit to resources used to achieve outcome (videos/websites/documentation)
-ChatGPT (initial prompting/inspiration for system architecture)
-dbdiagram.io (ERD Visual Design)
+## Credit/References
+ChatGPT (initial prompting/inspiration for system architecture)   
+dbdiagram.io (ERD Visual Design)   
+AmigosCode (SpringBoot GraphQL tutorial)
+v0.dev (UI Design)

@@ -1,4 +1,3 @@
-scalar Date
 schema {
   query: Query
   mutation: Mutation
@@ -124,7 +123,7 @@ type AttendanceRecord {
   attendanceID: Int
   studentID: Int
   subjectID: Int
-  dateMarked: Date
+  dateMarked: String
   isAbsent: Boolean
   authorisedAbsence: Boolean
   extraInfo: String
@@ -147,7 +146,7 @@ type ComplaintRecord {
   teacherID: Int
   complaintTitle: String
   complaintDesc: String
-  meetingSet: Date
+  meetingSet: String
   outcome: String
 }
 type Course {
@@ -162,8 +161,8 @@ type CourseEnrollment {
   enrolID: Int
   studentID: Int
   courseName: String
-  startDate:Date
-  endDate: Date
+  startDate:String
+  endDate: String
   finalOutcome: String
   currentlyTaking: Boolean
 }
@@ -176,7 +175,7 @@ type Exam {
 type ExamRecord {
   studentID: Int
   examID: Int
-  takenAt: Date
+  takenAt: String
 }
 type Payment {
   paymentID: Int
@@ -184,14 +183,14 @@ type Payment {
   paymentReceived: Boolean
   madeOnline: Boolean
   amount: Float
-  dateMade: Date
+  dateMade: String
   paymentFor: String
 }
 type Person {
   personID: Int
   firstName: String
   lastName: String
-  doB: Date
+  doB: String
   gender: String
   homeAddress: String
   email: String
@@ -227,7 +226,7 @@ type Subject {
   dateInfo: String
   teacherID: Int
   salary: Float
-  hireDate: Date
+  hireDate: String
 }
 input CreateAccountInput {
   username: String!

@@ -23,9 +23,9 @@ Based off user requirements and the project background I won't fill this in sinc
 ## Non-functional Requirements
   
 ### Include conditions or constrains around
-– Performance – Fast times but doesn't need to be hyper fast. 
-– Capacity – assuming mosque offers maktab classes thats 10 classes with capacity of 30 students = 300, plus an extra 50 for alim and an extra 50 for diploma in islamic studies - both with 3 classes of 15/15/20. 
-– Availability - 24/7 access.
-– Portability and interoperability - Mobile app, desktop app, web app.
-– Maintainability - Will maintain and extend features as time goes on
-– Security and privacy - Extended on in future documentation looking at legal and ethical
+– Performance – Fast times but doesn't need to be hyper fast.   
+– Capacity – assuming mosque offers maktab classes thats 10 classes with capacity of 30 students = 300, plus an extra 50 for alim and an extra 50 for diploma in islamic studies - both with 3 classes of 15/15/20.   
+– Availability - 24/7 access.   
+– Portability and interoperability - Mobile app, desktop app, web app.   
+– Maintainability - Will maintain and extend features as time goes on   
+– Security and privacy - Extended on in future documentation looking at legal and ethical    
