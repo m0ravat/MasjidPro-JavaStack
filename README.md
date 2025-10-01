@@ -11,13 +11,13 @@
   - [Database](doc/Design/db.md)
   - [API/Libraries used](doc/Design/api.md)
 - __Implementation__
-  - [Version Control & Deployment](doc/vcD.md)
+  - [Version Control & Deployment](doc/Implementation/vcD.md)
   - [Code Structure](doc/Implementation/code.md)
   - [Testing](doc/Testing/test.md)
 - __Evaluation__
   - [Personal Evaluation](doc/eval.md)
-  - [Coding Standards & Principles](doc/Planning/princ.md)
-  - [Legal, Social & Ethical Considerations](doc/LSE.md)
+  - [Coding Standards & Principles](doc/Implementation/principles.md)
+  - [Legal, Social & Ethical Considerations](doc/Maintenance/LSE.md)
 - [References](doc/ref.md)
 
 ## Introduction
