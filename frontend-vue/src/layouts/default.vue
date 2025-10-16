@@ -1,45 +1,17 @@
 <template>
-  <v-layout class="min-h-screen d-flex flex-column rounded-md border">
+  <v-layout class="d-flex flex-column">
     <!-- App Bar -->
-    <v-app-bar color="#059669" title="MadrasahPro">
-      <template #prepend>
-        <v-icon icon="$vuetify" />
-      </template>
+    <generic-nav />
 
-      <template #append>
-        <!-- Menu Button on the right -->
-        <v-btn icon @click="drawer = !drawer">
-          <v-icon>mdi-menu</v-icon>
-        </v-btn>
-      </template>
-    </v-app-bar>
-
-    <!-- Navigation Drawer -->
-    <v-navigation-drawer
-      v-model="drawer"
-      color="#059669"
-      location="top"
-      temporary
-    >
-      <v-list>
-        <v-list-item title="Home" />
-        <v-list-item title="Courses" />
-        <v-list-item title="Events" />
-        <v-list-item title="Contact Us" />
-      </v-list>
-    </v-navigation-drawer>
-
-    <!-- Main Content -->
-    <v-main class="flex-grow-1 d-flex align-center justify-center">
+    <!-- Main Content - removed align-center justify-center to allow scrolling -->
+    <v-main class="flex-grow-1">
       <router-view />
     </v-main>
 
-    <!-- Footer -->
+    <!-- Footer - removed height constraints -->
     <v-footer
-      class="text-center d-flex flex-column ga-2 py-4 w-full"
+      class="text-center d-flex flex-column ga-2 py-4"
       color="#059669"
-      height="1"
-      style="max-height: 200px;"
     >
       <!-- Social icons -->
       <div class="d-flex ga-3 justify-center">
@@ -55,7 +27,7 @@
 
       <v-divider class="my-2" thickness="2" width="50" />
 
-      <div class="text-caption font-weight-regular opacity-80 text-white">
+      <div class="text-caption font-weight-regular opacity-80 text-white px-4">
         Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
         Mauris cursus commodo interdum. Praesent ut risus eget metus luctus
         accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a
