@@ -5,46 +5,46 @@ schema {
 
 type Query {
   accounts: [Account]
-  accountById(accountID: String!): Account
+  accountById(accountID: Int!): Account
 
   attendanceRecords: [AttendanceRecord]
-  attendanceRecordById(attendanceID: String!): AttendanceRecord
+  attendanceRecordById(attendanceID: Int!): AttendanceRecord
 
   books: [Book]
-  bookById(bookID: String!): Book
+  bookById(bookID: Int!): Book
 
   bookAssignments: [BookAssigment]
-  bookAssigmentById(uniqueAssignID: String!): BookAssigment
+  bookAssigmentById(uniqueAssignID: Int!, bookID: Int!, subjectName: String!): BookAssigment
 
   complaintRecords: [ComplaintRecord]
-  complaintRecordById(complaintID: String!): ComplaintRecord
+  complaintRecordById(complaintID: Int!): ComplaintRecord
 
   courses: [Course]
   courseByName(courseName: String!): Course
 
   courseEnrollments: [CourseEnrollment]
-  courseEnrollmentById(enrolID: String!): CourseEnrollment
+  courseEnrollmentById(enrolID: Int!, studentID: Int!): CourseEnrollment
 
   exams: [Exam]
-  examById(examID: String!): Exam
+  examById(examID: Int!): Exam
 
   examRecords: [ExamRecord]
-  examRecordByPk(studentID: String!, examID: String!): ExamRecord
+  examRecordByPk(studentID: String!, examID: Int!): ExamRecord
 
   payments: [Payment]
-  paymentById(paymentID: String!): Payment
+  paymentById(paymentID: Int!): Payment
 
   persons: [Person]
-  personById(personID: String!): Person
+  personById(personID: Int!): Person
 
   publicEvents: [PublicEvent]
-  publicEventById(eventID: String!): PublicEvent
+  publicEventById(eventID: Int!): PublicEvent
 
   students: [Student]
-  studentById(studentID: String!): Student
+  studentById(studentID: Int!): Student
 
   studentFeedbacks: [StudentFeedback]
-  studentFeedbackById(feedbackID: String!): StudentFeedback
+  studentFeedbackById(feedbackID: Int!): StudentFeedback
 
   subjects: [Subject]
   subjectByName(subjectName: String!): Subject
@@ -122,7 +122,7 @@ type Account {
 type AttendanceRecord {
   attendanceID: Int
   studentID: Int
-  subjectID: Int
+  subjectName: String
   dateMarked: String
   isAbsent: Boolean
   authorisedAbsence: Boolean
@@ -199,7 +199,7 @@ type Person {
   typeOfPerson: String
   medicalInfo: String
   userFlag: Boolean
-  relationshipWith: String
+  relationshipWith: Int
 }
 type PublicEvent {
   eventID: Int
@@ -227,6 +227,7 @@ type Subject {
   teacherID: Int
   salary: Float
   hireDate: String
+  courseName: String
 }
 input CreateAccountInput {
   username: String!
