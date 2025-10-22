@@ -29,7 +29,7 @@ type Query {
   examById(examID: Int!): Exam
 
   examRecords: [ExamRecord]
-  examRecordByPk(studentID: String!, examID: Int!): ExamRecord
+  examRecordByPk(studentID: Int!, examID: Int!): ExamRecord
 
   payments: [Payment]
   paymentById(paymentID: Int!): Payment
@@ -54,60 +54,60 @@ type Query {
 
 type Mutation {
   createAccount(input: CreateAccountInput!): Account
-  updateAccount(username: String, input: UpdateAccountInput!): Account
-  deleteAccount(username: String): Boolean
+  updateAccount(userID: Int, input: UpdateAccountInput!): Account
+  deleteAccount(userID: Int): Boolean
 
   createAttendanceRecord(input: CreateAttendanceRecordInput!): AttendanceRecord
-  updateAttendanceRecord(attendanceID: String, input: UpdateAttendanceRecordInput!): AttendanceRecord
-  deleteAttendanceRecord(attendanceID: String): Boolean
+  updateAttendanceRecord(attendanceID: Int, input: UpdateAttendanceRecordInput!): AttendanceRecord
+  deleteAttendanceRecord(attendanceID: Int): Boolean
 
   createBook(input: CreateBookInput!): Book
-  updateBook(bookID: String, input: UpdateBookInput!): Book
-  deleteBook(bookID: String): Boolean
+  updateBook(bookID: Int, input: UpdateBookInput!): Book
+  deleteBook(bookID: Int): Boolean
 
   createBookAssignment(input: CreateBookAssigmentInput!): BookAssigment
-  updateBookAssignment(uniqueAssignID: String, input: UpdateBookAssigmentInput!): BookAssigment
-  deleteBookAssignment(uniqueAssignID: String): Boolean
+  updateBookAssignment(uniqueAssignID: Int, input: UpdateBookAssigmentInput!): BookAssigment
+  deleteBookAssignment(uniqueAssignID: Int): Boolean
 
   createComplaintRecord(input: CreateComplaintRecordInput!): ComplaintRecord
-  updateComplaintRecord(complaintID: String, input: UpdateComplaintRecordInput!): ComplaintRecord
-  deleteComplaintRecord(complaintID: String): Boolean
+  updateComplaintRecord(complaintID: Int, input: UpdateComplaintRecordInput!): ComplaintRecord
+  deleteComplaintRecord(complaintID: Int): Boolean
 
   createCourse(input: CreateCourseInput!): Course
   updateCourse(courseName: String, input: UpdateCourseInput!): Course
   deleteCourse(courseName: String): Boolean
 
   createCourseEnrollment(input: CreateCourseEnrollmentInput!): CourseEnrollment
-  updateCourseEnrollment(enrolID: String, input: UpdateCourseEnrollmentInput!): CourseEnrollment
-  deleteCourseEnrollment(enrolID: String): Boolean
+  updateCourseEnrollment(enrolID: Int, input: UpdateCourseEnrollmentInput!): CourseEnrollment
+  deleteCourseEnrollment(enrolID: Int): Boolean
 
   createExam(input: CreateExamInput!): Exam
-  updateExam(examID: String, input: UpdateExamInput!): Exam
-  deleteExam(examID: String): Boolean
+  updateExam(examID: Int, input: UpdateExamInput!): Exam
+  deleteExam(examID: Int): Boolean
 
   createExamRecord(input: CreateExamRecordInput!): ExamRecord
-  updateExamRecord(studentID: String, input: UpdateExamRecordInput!): ExamRecord
-  deleteExamRecord(studentID: String): Boolean
+  updateExamRecord(studentID: Int, input: UpdateExamRecordInput!): ExamRecord
+  deleteExamRecord(studentID: Int): Boolean
 
   createPayment(input: CreatePaymentInput!): Payment
-  updatePayment(paymentID: String, input: UpdatePaymentInput!): Payment
-  deletePayment(paymentID: String): Boolean
+  updatePayment(paymentID: Int, input: UpdatePaymentInput!): Payment
+  deletePayment(paymentID: Int): Boolean
 
   createPerson(input: CreatePersonInput!): Person
-  updatePerson(personID: String, input: UpdatePersonInput!): Person
-  deletePerson(personID: String): Boolean
+  updatePerson(personID: Int, input: UpdatePersonInput!): Person
+  deletePerson(personID: Int): Boolean
 
   createPublicEvent(input: CreatePublicEventInput!): PublicEvent
-  updatePublicEvent(eventID: String, input: UpdatePublicEventInput!): PublicEvent
-  deletePublicEvent(eventID: String): Boolean
+  updatePublicEvent(eventID: Int, input: UpdatePublicEventInput!): PublicEvent
+  deletePublicEvent(eventID: Int): Boolean
 
   createStudent(input: CreateStudentInput!): Student
-  updateStudent(studentID: String, input: UpdateStudentInput!): Student
-  deleteStudent(studentID: String): Boolean
+  updateStudent(studentID: Int, input: UpdateStudentInput!): Student
+  deleteStudent(studentID: Int): Boolean
 
   createStudentFeedback(input: CreateStudentFeedbackInput!): StudentFeedback
-  updateStudentFeedback(feedbackID: String, input: UpdateStudentFeedbackInput!): StudentFeedback
-  deleteStudentFeedback(feedbackID: String): Boolean
+  updateStudentFeedback(feedbackID: Int, input: UpdateStudentFeedbackInput!): StudentFeedback
+  deleteStudentFeedback(feedbackID: Int): Boolean
 
   createSubject(input: CreateSubjectInput!): Subject
   updateSubject(subjectName: String, input: UpdateSubjectInput!): Subject
@@ -232,79 +232,99 @@ type Subject {
 input CreateAccountInput {
   username: String!
   password: String!
-  accountID: String!
+  accountID: Int!
 }
 input UpdateAccountInput {
   username: String
   password: String
-  accountID: String
+  accountID: Int
 }
+input DeleteAccountInput {
+  accountID: Int!
+}
+
 input CreateAttendanceRecordInput {
-  attendanceID: String!
-  studentID: String!
-  subjectID: String!
+  attendanceID: Int!
+  studentID: Int!
+  subjectName: String!
   dateMarked: String!
   isAbsent: Boolean!
   authorisedAbsence: Boolean!
   extraInfo: String!
 }
 input UpdateAttendanceRecordInput {
-  attendanceID: String
-  studentID: String
-  subjectID: String
+  attendanceID: Int
+  studentID: Int
+  subjectName: String
   dateMarked: String
   isAbsent: Boolean
   authorisedAbsence: Boolean
   extraInfo: String
 }
+input DeleteAttendanceRecordInput {
+  attendanceID: Int!
+}
+
 input CreateBookInput {
-  bookID: String!
+  bookID: Int!
   bookName: String!
   bookDesc: String!
   price: Float!
   bookLinks: String!
 }
 input UpdateBookInput {
-  bookID: String
+  bookID: Int
   bookName: String
   bookDesc: String
   price: Float
   bookLinks: String
 }
+input DeleteBookInput {
+  bookID: Int!
+}
+
 input CreateBookAssigmentInput {
-  uniqueAssignID: String!
-  bookID: String!
+  uniqueAssignID: Int!
+  bookID: Int!
   subjectName: String!
 }
 input UpdateBookAssigmentInput {
-  uniqueAssignID: String
-  bookID: String
+  uniqueAssignID: Int
+  bookID: Int
   subjectName: String
 }
+input DeleteBookAssigmentInput {
+  uniqueAssignID: Int!
+}
+
 input CreateComplaintRecordInput {
-  complaintID: String!
-  studentID: String!
-  teacherID: String!
+  complaintID: Int!
+  studentID: Int!
+  teacherID: Int!
   complaintTitle: String!
   complaintDesc: String!
   meetingSet: String!
   outcome: String!
 }
 input UpdateComplaintRecordInput {
-  complaintID: String
-  studentID: String
-  teacherID: String
+  complaintID: Int
+  studentID: Int
+  teacherID: Int
   complaintTitle: String
   complaintDesc: String
   meetingSet: String
   outcome: String
 }
+input DeleteComplaintRecordInput {
+  complaintID: Int!
+}
+
 input CreateCourseInput {
   courseName: String!
   courseDesc: String!
   price: Float!
   duration: String!
-  capacity: String!
+  capacity: Int!
   targetAge: String!
 }
 input UpdateCourseInput {
@@ -312,12 +332,16 @@ input UpdateCourseInput {
   courseDesc: String
   price: Float
   duration: String
-  capacity: String
+  capacity: Int
   targetAge: String
 }
+input DeleteCourseInput {
+  courseName: String!
+}
+
 input CreateCourseEnrollmentInput {
-  enrolID: String!
-  studentID: String!
+  enrolID: Int!
+  studentID: Int!
   courseName: String!
   startDate: String!
   endDate: String!
@@ -325,38 +349,51 @@ input CreateCourseEnrollmentInput {
   currentlyTaking: Boolean!
 }
 input UpdateCourseEnrollmentInput {
-  enrolID: String
-  studentID: String
+  enrolID: Int
+  studentID: Int
   courseName: String
   startDate: String
   endDate: String
   finalOutcome: String
   currentlyTaking: Boolean
 }
+input DeleteCourseEnrollmentInput {
+  enrolID: Int!
+}
+
 input CreateExamInput {
-  examID: String!
+  examID: Int!
   examTitle: String!
   examDesc: String!
   forSubject: String!
 }
 input UpdateExamInput {
-  examID: String
+  examID: Int
   examTitle: String
   examDesc: String
   forSubject: String
 }
+input DeleteExamInput {
+  examID: Int!
+}
+
 input CreateExamRecordInput {
-  studentID: String!
-  examID: String!
+  studentID: Int!
+  examID: Int!
   takenAt: String!
 }
 input UpdateExamRecordInput {
-  studentID: String
-  examID: String
+  studentID: Int
+  examID: Int
   takenAt: String
 }
+input DeleteExamRecordInput {
+  studentID: Int!
+  examID: Int!
+}
+
 input CreatePaymentInput {
-  paymentID: String!
+  paymentID: Int!
   paymentType: String!
   paymentReceived: Boolean!
   madeOnline: Boolean!
@@ -365,7 +402,7 @@ input CreatePaymentInput {
   paymentFor: String!
 }
 input UpdatePaymentInput {
-  paymentID: String
+  paymentID: Int
   paymentType: String
   paymentReceived: Boolean
   madeOnline: Boolean
@@ -373,8 +410,12 @@ input UpdatePaymentInput {
   dateMade: String
   paymentFor: String
 }
+input DeletePaymentInput {
+  paymentID: Int!
+}
+
 input CreatePersonInput {
-  personID: String!
+  personID: Int!
   firstName: String!
   lastName: String!
   doB: String!
@@ -386,10 +427,10 @@ input CreatePersonInput {
   typeOfPerson: String!
   medicalInfo: String!
   userFlag: Boolean!
-  relationshipWith: String!
+  relationshipWith: Int!
 }
 input UpdatePersonInput {
-  personID: String
+  personID: Int
   firstName: String
   lastName: String
   doB: String
@@ -401,10 +442,14 @@ input UpdatePersonInput {
   typeOfPerson: String
   medicalInfo: String
   userFlag: Boolean
-  relationshipWith: String
+  relationshipWith: Int
 }
+input DeletePersonInput {
+  personID: Int!
+}
+
 input CreatePublicEventInput {
-  eventID: String!
+  eventID: Int!
   dateInfo: String!
   timeInfo: String!
   openTo: String!
@@ -412,39 +457,51 @@ input CreatePublicEventInput {
   relevantLinks: String!
 }
 input UpdatePublicEventInput {
-  eventID: String
+  eventID: Int
   dateInfo: String
   timeInfo: String
   openTo: String
   eventDesc: String
   relevantLinks: String
 }
+input DeletePublicEventInput {
+  eventID: Int!
+}
+
 input CreateStudentInput {
-  studentID: String!
+  studentID: Int!
   debtOwes: Float!
 }
 input UpdateStudentInput {
-  studentID: String
+  studentID: Int
   debtOwes: Float
 }
+input DeleteStudentInput {
+  studentID: Int!
+}
+
 input CreateStudentFeedbackInput {
-  feedbackID: String!
+  feedbackID: Int!
   feedbackGiven: String!
-  studentID: String!
-  teacherID: String!
+  studentID: Int!
+  teacherID: Int!
 }
 input UpdateStudentFeedbackInput {
-  feedbackID: String
+  feedbackID: Int
   feedbackGiven: String
-  studentID: String
-  teacherID: String
+  studentID: Int
+  teacherID: Int
 }
+input DeleteStudentFeedbackInput {
+  feedbackID: Int!
+}
+
 input CreateSubjectInput {
   subjectName: String!
   subjectDesc: String!
   timeInfo: String!
   dateInfo: String!
-  teacherID: String!
+  teacherID: Int!
   salary: Float!
   hireDate: String!
 }
@@ -453,7 +510,10 @@ input UpdateSubjectInput {
   subjectDesc: String
   timeInfo: String
   dateInfo: String
-  teacherID: String
+  teacherID: Int
   salary: Float
   hireDate: String
+}
+input DeleteSubjectInput {
+  subjectName: String!
 }
