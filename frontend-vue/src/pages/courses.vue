@@ -8,7 +8,7 @@
       <!-- Courses Grid -->
       <v-row>
         <v-col
-          v-for="{id, title, image, badge, description, eligibility, price, duration} in courses"
+          v-for="{id, title, image, badge, description, eligibility, price, duration} in courseStore.courses"
           :key="id"
           cols="12"
           md="6"
@@ -71,50 +71,8 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
-
-  const courses = ref([
-    {
-      id: 1,
-      title: '\'Alimiyyah Course',
-      badge: 'Onsite | Weekdays',
-      description: 'The IZA \'Ālimiyyah Course was designed from the traditional Darse Nizami course catering to the Muslim community of U.K.',
-      image: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&h=600&fit=crop',
-      eligibility: 'Males 16+',
-      duration: '7 years',
-      price: '£1200/annually',
-    },
-    {
-      id: 2,
-      title: 'Diploma in Islamic Studies',
-      badge: 'Onsite | Weekdays',
-      description: 'The Diploma course was designed for the busy Muslim adult. The course has been carefully designed, covering a wide range of modules.',
-      image: 'https://images.unsplash.com/photo-1584286595398-a59f21d25e46?w=800&h=600&fit=crop',
-      eligibility: 'Males 16+',
-      duration: '2 years',
-      price: '£60/month',
-    },
-    {
-      id: 3,
-      title: 'The Qur\'an Programme',
-      badge: 'Onsite | Weekdays',
-      description: 'A comprehensive programme designed to help students master Quranic recitation with proper tajweed and memorization techniques.',
-      image: 'https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=800&h=600&fit=crop',
-      eligibility: 'All Ages',
-      duration: '3 years',
-      price: '£800/annually',
-    },
-    {
-      id: 4,
-      title: 'GCSE in Islamic Studies',
-      badge: 'Onsite | Weekdays',
-      description: 'Prepare for your GCSE in Islamic Studies with our structured curriculum aligned with examination board requirements.',
-      image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&h=600&fit=crop',
-      eligibility: 'Ages 14-16',
-      duration: '2 years',
-      price: '£500/annually',
-    },
-  ])
+import {useCourseStore} from "@/stores/app.ts";
+const courseStore = useCourseStore()
 </script>
 
 <style scoped>

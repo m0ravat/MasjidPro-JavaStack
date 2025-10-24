@@ -158,7 +158,7 @@
   function submitStudent () {
     console.log('Student submitted:', student.value)
   }
-
+// Logic should be: create preliminary account to track application for students, teachers receive an email of consideration.
   function submitTeacher () {
     console.log('Teacher submitted:', teacher.value)
   }
