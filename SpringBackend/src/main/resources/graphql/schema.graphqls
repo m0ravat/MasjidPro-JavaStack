@@ -154,7 +154,8 @@ type Course {
   courseDesc: String
   price: Float
   duration: String
-  capacity: Int
+  summary: String
+  Image: String
   targetAge: String
 }
 type CourseEnrollment {
@@ -184,7 +185,7 @@ type Payment {
   madeOnline: Boolean
   amount: Float
   dateMade: String
-  paymentFor: String
+  paymentFor: Int
 }
 type Person {
   personID: Int
@@ -208,6 +209,10 @@ type PublicEvent {
   openTo: String
   eventDesc: String
   relevantLinks: String
+  image: String
+  location: String
+  title: String
+  shortDesc: String
 }
 type Student {
   studentID: Int
