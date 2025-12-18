@@ -1,5 +1,3 @@
-<script setup lang="ts">
-</script>
 <template>
   <div class="bg-grey-lighten-4">
     <v-container class="py-16">
@@ -100,7 +98,7 @@
     </v-dialog>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
   import { ref } from 'vue'
 
   const portals = [
