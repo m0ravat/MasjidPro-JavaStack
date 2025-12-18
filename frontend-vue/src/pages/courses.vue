@@ -8,8 +8,8 @@
       <!-- Courses Grid -->
       <v-row>
         <v-col
-          v-for="{id, title, image, badge, description, eligibility, price, duration} in courseStore.courses"
-          :key="id"
+          v-for="(course, index) in courseStore.courses"
+          :key="index"
           cols="12"
           md="6"
         >
@@ -19,7 +19,7 @@
               class="course-image"
               cover
               height="300"
-              :src="image"
+              :src="course.Image"
             />
 
             <!-- Course Content -->
@@ -31,17 +31,17 @@
                 size="default"
                 text-color="white"
               >
-                {{ badge }}
+                {{ course.Image }}
               </v-chip>
 
               <!-- Course Title -->
               <h2 class="text-h4 font-weight-bold mb-3">
-                {{ title }}
+                {{ course.courseName }}
               </h2>
 
               <!-- Course Description -->
               <p class="text-body-1 mb-0">
-                {{ description }}
+                {{ course.courseDesc }}
                 <span class="font-weight-bold">Read more ...</span>
               </p>
             </v-card-text>
@@ -51,15 +51,15 @@
             <v-card-text class="pa-0">
               <v-row class="course-info" no-gutters>
                 <v-col class="text-center pa-4" cols="4">
-                  <div class="font-weight-medium">{{ eligibility }}</div>
+                  <div class="font-weight-medium">{{ course.targetAge }}</div>
                 </v-col>
                 <v-divider vertical />
                 <v-col class="text-center pa-4" cols="4">
-                  <div class="font-weight-medium">{{ duration }}</div>
+                  <div class="font-weight-medium">{{ course.duration }}</div>
                 </v-col>
                 <v-divider vertical />
                 <v-col class="text-center pa-4" cols="4">
-                  <div class="font-weight-medium">{{ price }}</div>
+                  <div class="font-weight-medium">{{ course.price }}</div>
                 </v-col>
               </v-row>
             </v-card-text>
@@ -71,8 +71,14 @@
 </template>
 
 <script lang="ts" setup>
-import {useCourseStore} from "@/stores/app.ts";
+import { useCourseStore } from "@/stores/app.ts"
+
 const courseStore = useCourseStore()
+
+// Optional: fetch data on page load
+if (courseStore.courses.length === 0) {
+  courseStore.fetchCourses?.() // depends on your store
+}
 </script>
 
 <style scoped>
@@ -107,3 +113,4 @@ const courseStore = useCourseStore()
   font-size: 0.95rem;
 }
 </style>
+

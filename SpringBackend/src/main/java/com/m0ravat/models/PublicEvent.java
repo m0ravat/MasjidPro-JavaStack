@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 // ---------- PublicEvent ----------
 @Entity
-@Table(name = "public_event")
+@Table(name = "PublicEvent")
 public class PublicEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

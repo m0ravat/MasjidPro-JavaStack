@@ -112,6 +112,8 @@ type Mutation {
   createSubject(input: CreateSubjectInput!): Subject
   updateSubject(subjectName: String, input: UpdateSubjectInput!): Subject
   deleteSubject(subjectName: String): Boolean
+
+  login(username: String, password: String): Account
 }
 
 type Account {

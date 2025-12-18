@@ -92,6 +92,9 @@
 <script lang="ts" setup>
 import {useEventStore} from "@/stores/app.ts";
 const eventStore = useEventStore();
+if (eventStore.events.length === 0) {
+  eventStore.fetchEvents?.() // depends on your store
+}
 </script>
 
 <style scoped>
