@@ -30,6 +30,7 @@ so their limitation will be on relevant contact info/grades/basic history. They 
 complaints from other teachers however, that is exclusive to the admin who is assumed to be the headmaster. As such, 
 the system's UI will need to be minimalistic and easy to navigate for various demographics. 
 
+Note: Due to the increasing complexity and me awaiting a bootcamp on vueJS I implemented the public pages with the assumption user based actions will be carried out on the database directly. This doc will act as a springboard for when I can build on this project without relying on ChatGPT
 ## Extra Requirements
 Handling of other academic related information like books and payments.   
 Capacity - 360 students with 60 new every year, 160 parent accounts with 20 new each year.   
